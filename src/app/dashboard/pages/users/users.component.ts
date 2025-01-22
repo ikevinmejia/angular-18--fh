@@ -1,8 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { TitleComponent } from '@shared/title/title.component';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  imports: [
+    TitleComponent,
+    RouterModule,
+    CommonModule
+  ],
   templateUrl: './users.component.html',
   styles: `
     :host {
@@ -11,4 +19,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent { }
+export default class UsersComponent {
+  public userServive = inject(UsersService);
+
+}
